@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react';
 
 const ExchangeRateChecker = () => {
     const [exchangeRates, setExchangeRates] = useState({});
-    const [baseCurrency, setBaseCurrency] = useState('USD');
-    const [targetCurrency, setTargetCurrency] = useState('EUR');
+    const [baseCurrency, setBaseCurrency] = useState('HKD');
+    const [targetCurrency, setTargetCurrency] = useState('JPY');
     const [amount, setAmount] = useState(1);
     const [convertedAmount, setConvertedAmount] = useState(0);
 
     useEffect(() => {
         const fetchExchangeRates = async () => {
-            const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
-            const data = await response.json();
-            setExchangeRates(data.rates);
+            try {
+                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
+                const data = await response.json();
+                setExchangeRates(data.rates);
+            } catch (error) {
+                console.error('Error fetching exchange rates:', error);
+            }
         };
 
         fetchExchangeRates();
@@ -23,38 +27,21 @@ const ExchangeRateChecker = () => {
         }
     }, [amount, exchangeRates, targetCurrency]);
 
-    const handleBaseCurrencyChange = (e) => {
-        setBaseCurrency(e.target.value);
-    };
-
-    const handleTargetCurrencyChange = (e) => {
-        setTargetCurrency(e.target.value);
-    };
-
-    const handleAmountChange = (e) => {
-        setAmount(e.target.value);
-    };
-
     return (
         <div>
-            <h1>Exchange Rate Checker</h1>
+            <h1>HKD to JPY Exchange Rate Checker</h1>
             <div>
-                <input type="number" value={amount} onChange={handleAmountChange} />
-                <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
-                    {Object.keys(exchangeRates).map((currency) => (
-                        <option key={currency} value={currency}>{currency}</option>
-                    ))}
-                </select>
-                <span> to </span>
-                <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
-                    {Object.keys(exchangeRates).map((currency) => (
-                        <option key={currency} value={currency}>{currency}</option>
-                    ))}
-                </select>
+                <input 
+                    type="number" 
+                    value={amount} 
+                    onChange={(e) => setAmount(e.target.value)}
+                    min="0"
+                />
+                <span> {baseCurrency} = {convertedAmount} {targetCurrency}</span>
             </div>
-            <h2>
-                {amount} {baseCurrency} = {convertedAmount} {targetCurrency}
-            </h2>
+            <div>
+                <p>Current Rate: 1 {baseCurrency} = {exchangeRates[targetCurrency]} {targetCurrency}</p>
+            </div>
         </div>
     );
 };
