@@ -59,32 +59,10 @@ const ExchangeRateChecker = () => {
     };
 
     return (
-        <div style={{ 
-            padding: '20px',
-            maxWidth: '100%',
-            margin: '0 auto'
-        }}>
-            <h1 style={{
-                textAlign: 'center',
-                fontSize: 'calc(20px + 2vmin)',
-                marginBottom: '20px'
-            }}>Currency Exchange Rate Checker</h1>
-            
-            <div style={{ 
-                display: 'flex', 
-                flexDirection: 'row',
-                justifyContent: 'center', 
-                gap: '20px', 
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                padding: '0 10px'
-            }}>
-                <div style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    alignItems: 'center',
-                    minWidth: '150px'
-                }}>
+        <div>
+            <h1>Currency Exchange Rate Checker</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <img 
                         src={getFlagImage(baseCurrency)} 
                         alt={`${baseCurrency} flag`}
@@ -94,15 +72,7 @@ const ExchangeRateChecker = () => {
                             marginBottom: '10px'
                         }}
                     />
-                    <select 
-                        value={baseCurrency} 
-                        onChange={handleBaseCurrencyChange}
-                        style={{
-                            padding: '5px',
-                            width: '100%',
-                            maxWidth: '200px'
-                        }}
-                    >
+                    <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
                         {majorCurrencies.map((currency) => (
                             <option key={currency.code} value={currency.code}>
                                 {currency.code} - {currency.name}
@@ -114,22 +84,16 @@ const ExchangeRateChecker = () => {
                 <button 
                     onClick={handleSwapCurrencies}
                     style={{
-                        padding: '8px 12px',
+                        margin: '0 10px',
+                        padding: '5px 10px',
                         cursor: 'pointer',
-                        borderRadius: '4px',
-                        border: '1px solid #ccc',
-                        backgroundColor: '#f8f8f8'
+                        alignSelf: 'flex-end'
                     }}
                 >
                     ⇄
                 </button>
 
-                <div style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    alignItems: 'center',
-                    minWidth: '150px'
-                }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <img 
                         src={getFlagImage(targetCurrency)} 
                         alt={`${targetCurrency} flag`}
@@ -139,15 +103,7 @@ const ExchangeRateChecker = () => {
                             marginBottom: '10px'
                         }}
                     />
-                    <select 
-                        value={targetCurrency} 
-                        onChange={handleTargetCurrencyChange}
-                        style={{
-                            padding: '5px',
-                            width: '100%',
-                            maxWidth: '200px'
-                        }}
-                    >
+                    <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
                         {majorCurrencies.map((currency) => (
                             <option key={currency.code} value={currency.code}>
                                 {currency.code} - {currency.name}
@@ -161,34 +117,23 @@ const ExchangeRateChecker = () => {
                 display: 'flex', 
                 flexDirection: 'column', 
                 alignItems: 'center',
-                marginTop: '30px',
-                gap: '15px',
-                padding: '0 10px'
+                marginTop: '20px',
+                gap: '10px'
             }}>
-                <div style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '10px',
-                    flexWrap: 'wrap',
-                    justifyContent: 'center'
-                }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <input 
                         type="number" 
                         value={amount} 
                         onChange={(e) => setAmount(e.target.value)}
                         min="0"
                         style={{
-                            padding: '8px',
-                            width: '120px',
-                            borderRadius: '4px',
-                            border: '1px solid #ccc'
+                            padding: '5px',
+                            width: '100px'
                         }}
                     />
-                    <span style={{ textAlign: 'center' }}> 
-                        {baseCurrency} = {convertedAmount} {targetCurrency}
-                    </span>
+                    <span> {baseCurrency} = {convertedAmount} {targetCurrency}</span>
                 </div>
-                <div style={{ textAlign: 'center' }}>
+                <div>
                     <p>Current Rate: 1 {baseCurrency} = {exchangeRates[targetCurrency]} {targetCurrency}</p>
                 </div>
             </div>
