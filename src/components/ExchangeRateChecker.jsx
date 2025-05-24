@@ -61,32 +61,58 @@ const ExchangeRateChecker = () => {
     return (
         <div>
             <h1>Currency Exchange Rate Checker</h1>
-            <div>
-                <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
-                    {majorCurrencies.map((currency) => (
-                        <option key={currency.code} value={currency.code}>
-                            {currency.code} - {currency.name}
-                        </option>
-                    ))}
-                </select>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <img 
+                        src={getFlagImage(baseCurrency)} 
+                        alt={`${baseCurrency} flag`}
+                        style={{ 
+                            height: '30px', 
+                            objectFit: 'contain',
+                            marginBottom: '10px'
+                        }}
+                    />
+                    <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
+                        {majorCurrencies.map((currency) => (
+                            <option key={currency.code} value={currency.code}>
+                                {currency.code} - {currency.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <button 
                     onClick={handleSwapCurrencies}
                     style={{
                         margin: '0 10px',
                         padding: '5px 10px',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        alignSelf: 'flex-end'
                     }}
                 >
                     ⇄
                 </button>
-                <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
-                    {majorCurrencies.map((currency) => (
-                        <option key={currency.code} value={currency.code}>
-                            {currency.code} - {currency.name}
-                        </option>
-                    ))}
-                </select>
+
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <img 
+                        src={getFlagImage(targetCurrency)} 
+                        alt={`${targetCurrency} flag`}
+                        style={{ 
+                            height: '30px', 
+                            objectFit: 'contain',
+                            marginBottom: '10px'
+                        }}
+                    />
+                    <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
+                        {majorCurrencies.map((currency) => (
+                            <option key={currency.code} value={currency.code}>
+                                {currency.code} - {currency.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
+
             <div>
                 <input 
                     type="number" 
@@ -98,18 +124,6 @@ const ExchangeRateChecker = () => {
             </div>
             <div>
                 <p>Current Rate: 1 {baseCurrency} = {exchangeRates[targetCurrency]} {targetCurrency}</p>
-            </div>
-            <div>
-                <img 
-                    src={getFlagImage(baseCurrency)} 
-                    alt={`${baseCurrency} flag`}
-                    style={{ width: '30px', height: '20px' }}
-                />
-                <img 
-                    src={getFlagImage(targetCurrency)} 
-                    alt={`${targetCurrency} flag`}
-                    style={{ width: '30px', height: '20px' }}
-                />
             </div>
         </div>
     );
