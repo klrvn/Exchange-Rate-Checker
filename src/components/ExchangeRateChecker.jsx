@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactCountryFlag from 'react-country-flag';
 
 const ExchangeRateChecker = () => {
     const [exchangeRates, setExchangeRates] = useState({});
@@ -19,6 +20,20 @@ const ExchangeRateChecker = () => {
         { code: 'HKD', name: 'Hong Kong Dollar' },
         { code: 'SGD', name: 'Singapore Dollar' }
     ];
+
+    // Add currency to country code mapping
+    const currencyToCountry = {
+        'USD': 'US',
+        'EUR': 'EU',
+        'JPY': 'JP',
+        'GBP': 'GB',
+        'AUD': 'AU',
+        'CAD': 'CA',
+        'CHF': 'CH',
+        'CNY': 'CN',
+        'HKD': 'HK',
+        'SGD': 'SG'
+    };
 
     useEffect(() => {
         const fetchExchangeRates = async () => {
@@ -57,14 +72,26 @@ const ExchangeRateChecker = () => {
     return (
         <div>
             <h1>Currency Exchange Rate Checker</h1>
-            <div>
-                <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
-                    {majorCurrencies.map((currency) => (
-                        <option key={currency.code} value={currency.code}>
-                            {currency.code} - {currency.name}
-                        </option>
-                    ))}
-                </select>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px' }}>
+                <div style={{ textAlign: 'center' }}>
+                    <ReactCountryFlag
+                        countryCode={currencyToCountry[baseCurrency]}
+                        svg
+                        style={{
+                            width: '2em',
+                            height: '2em',
+                            marginBottom: '10px'
+                        }}
+                    />
+                    <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
+                        {majorCurrencies.map((currency) => (
+                            <option key={currency.code} value={currency.code}>
+                                {currency.code} - {currency.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <button 
                     onClick={handleSwapCurrencies}
                     style={{
@@ -75,13 +102,25 @@ const ExchangeRateChecker = () => {
                 >
                     ⇄
                 </button>
-                <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
-                    {majorCurrencies.map((currency) => (
-                        <option key={currency.code} value={currency.code}>
-                            {currency.code} - {currency.name}
-                        </option>
-                    ))}
-                </select>
+
+                <div style={{ textAlign: 'center' }}>
+                    <ReactCountryFlag
+                        countryCode={currencyToCountry[targetCurrency]}
+                        svg
+                        style={{
+                            width: '2em',
+                            height: '2em',
+                            marginBottom: '10px'
+                        }}
+                    />
+                    <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
+                        {majorCurrencies.map((currency) => (
+                            <option key={currency.code} value={currency.code}>
+                                {currency.code} - {currency.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
             <div>
                 <input 
