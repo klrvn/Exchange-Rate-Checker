@@ -113,17 +113,29 @@ const ExchangeRateChecker = () => {
                 </div>
             </div>
 
-            <div>
-                <input 
-                    type="number" 
-                    value={amount} 
-                    onChange={(e) => setAmount(e.target.value)}
-                    min="0"
-                />
-                <span> {baseCurrency} = {convertedAmount} {targetCurrency}</span>
-            </div>
-            <div>
-                <p>Current Rate: 1 {baseCurrency} = {exchangeRates[targetCurrency]} {targetCurrency}</p>
+            <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                alignItems: 'center',
+                marginTop: '20px',
+                gap: '10px'
+            }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <input 
+                        type="number" 
+                        value={amount} 
+                        onChange={(e) => setAmount(e.target.value)}
+                        min="0"
+                        style={{
+                            padding: '5px',
+                            width: '100px'
+                        }}
+                    />
+                    <span> {baseCurrency} = {convertedAmount} {targetCurrency}</span>
+                </div>
+                <div>
+                    <p>Current Rate: 1 {baseCurrency} = {exchangeRates[targetCurrency]} {targetCurrency}</p>
+                </div>
             </div>
         </div>
     );
