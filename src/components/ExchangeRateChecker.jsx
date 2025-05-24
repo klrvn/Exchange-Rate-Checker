@@ -7,6 +7,19 @@ const ExchangeRateChecker = () => {
     const [amount, setAmount] = useState(1);
     const [convertedAmount, setConvertedAmount] = useState(0);
 
+    const majorCurrencies = [
+        { code: 'USD', name: 'US Dollar' },
+        { code: 'EUR', name: 'Euro' },
+        { code: 'JPY', name: 'Japanese Yen' },
+        { code: 'GBP', name: 'British Pound' },
+        { code: 'AUD', name: 'Australian Dollar' },
+        { code: 'CAD', name: 'Canadian Dollar' },
+        { code: 'CHF', name: 'Swiss Franc' },
+        { code: 'CNY', name: 'Chinese Yuan' },
+        { code: 'HKD', name: 'Hong Kong Dollar' },
+        { code: 'SGD', name: 'Singapore Dollar' }
+    ];
+
     useEffect(() => {
         const fetchExchangeRates = async () => {
             try {
@@ -27,9 +40,34 @@ const ExchangeRateChecker = () => {
         }
     }, [amount, exchangeRates, targetCurrency]);
 
+    const handleBaseCurrencyChange = (e) => {
+        setBaseCurrency(e.target.value);
+    };
+
+    const handleTargetCurrencyChange = (e) => {
+        setTargetCurrency(e.target.value);
+    };
+
     return (
         <div>
-            <h1>HKD to JPY Exchange Rate Checker</h1>
+            <h1>Currency Exchange Rate Checker</h1>
+            <div>
+                <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
+                    {majorCurrencies.map((currency) => (
+                        <option key={currency.code} value={currency.code}>
+                            {currency.code} - {currency.name}
+                        </option>
+                    ))}
+                </select>
+                <span> to </span>
+                <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
+                    {majorCurrencies.map((currency) => (
+                        <option key={currency.code} value={currency.code}>
+                            {currency.code} - {currency.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <div>
                 <input 
                     type="number" 
