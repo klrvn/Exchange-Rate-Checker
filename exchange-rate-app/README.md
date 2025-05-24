@@ -1,6 +1,7 @@
 # Exchange Rate App
 
 This is a simple web application built with React that allows users to check real-time exchange rates for various currencies.
+This is my first app.
 
 ## Features
 
