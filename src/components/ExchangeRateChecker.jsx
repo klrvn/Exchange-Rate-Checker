@@ -54,6 +54,10 @@ const ExchangeRateChecker = () => {
         setTargetCurrency(temp);
     };
 
+    const getFlagImage = (currencyCode) => {
+        return `/images/flags/${currencyCode}.png`;
+    };
+
     return (
         <div>
             <h1>Currency Exchange Rate Checker</h1>
@@ -94,6 +98,18 @@ const ExchangeRateChecker = () => {
             </div>
             <div>
                 <p>Current Rate: 1 {baseCurrency} = {exchangeRates[targetCurrency]} {targetCurrency}</p>
+            </div>
+            <div>
+                <img 
+                    src={getFlagImage(baseCurrency)} 
+                    alt={`${baseCurrency} flag`}
+                    style={{ width: '30px', height: '20px' }}
+                />
+                <img 
+                    src={getFlagImage(targetCurrency)} 
+                    alt={`${targetCurrency} flag`}
+                    style={{ width: '30px', height: '20px' }}
+                />
             </div>
         </div>
     );
