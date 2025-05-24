@@ -75,19 +75,19 @@ const ExchangeRateChecker = () => {
             <div style={{ 
                 display: 'flex', 
                 justifyContent: 'center', 
-                alignItems: 'center',
+                alignItems: 'flex-end', // Changed from 'center' to 'flex-end'
                 gap: '8px',
                 width: '100%',
                 padding: '0 5px',
                 boxSizing: 'border-box',
-                minWidth: 'min-content' // Prevents wrapping
+                minWidth: 'min-content'
             }}>
                 <div style={{ 
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center',
-                    width: '120px', // Reduced width
-                    flex: '0 0 auto' // Prevents shrinking and growing
+                    width: '120px',
+                    flex: '0 0 auto'
                 }}>
                     <img 
                         src={getFlagImage(baseCurrency)} 
@@ -104,7 +104,7 @@ const ExchangeRateChecker = () => {
                         style={{
                             width: '100%',
                             padding: '5px 2px',
-                            fontSize: '12px' // Smaller font
+                            fontSize: '12px'
                         }}
                     >
                         {majorCurrencies.map((currency) => (
@@ -123,7 +123,9 @@ const ExchangeRateChecker = () => {
                         borderRadius: '4px',
                         border: '1px solid #ccc',
                         backgroundColor: '#f8f8f8',
-                        flex: '0 0 auto' // Prevents shrinking
+                        flex: '0 0 auto',
+                        height: '28px', // Match the height of select elements
+                        marginBottom: '0' // Align with dropdowns
                     }}
                 >
                     ⇄
@@ -133,8 +135,8 @@ const ExchangeRateChecker = () => {
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center',
-                    width: '120px', // Reduced width
-                    flex: '0 0 auto' // Prevents shrinking and growing
+                    width: '120px',
+                    flex: '0 0 auto'
                 }}>
                     <img 
                         src={getFlagImage(targetCurrency)} 
@@ -151,7 +153,7 @@ const ExchangeRateChecker = () => {
                         style={{
                             width: '100%',
                             padding: '5px 2px',
-                            fontSize: '12px' // Smaller font
+                            fontSize: '12px'
                         }}
                     >
                         {majorCurrencies.map((currency) => (
