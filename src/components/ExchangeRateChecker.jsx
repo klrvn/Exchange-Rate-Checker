@@ -48,6 +48,12 @@ const ExchangeRateChecker = () => {
         setTargetCurrency(e.target.value);
     };
 
+    const handleSwapCurrencies = () => {
+        const temp = baseCurrency;
+        setBaseCurrency(targetCurrency);
+        setTargetCurrency(temp);
+    };
+
     return (
         <div>
             <h1>Currency Exchange Rate Checker</h1>
@@ -59,7 +65,16 @@ const ExchangeRateChecker = () => {
                         </option>
                     ))}
                 </select>
-                <span> to </span>
+                <button 
+                    onClick={handleSwapCurrencies}
+                    style={{
+                        margin: '0 10px',
+                        padding: '5px 10px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    ⇄
+                </button>
                 <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
                     {majorCurrencies.map((currency) => (
                         <option key={currency.code} value={currency.code}>
