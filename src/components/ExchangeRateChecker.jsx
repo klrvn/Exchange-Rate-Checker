@@ -59,20 +59,55 @@ const ExchangeRateChecker = () => {
     };
 
     return (
-        <div>
-            <h1>Currency Exchange Rate Checker</h1>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div style={{ 
+            padding: '20px',
+            maxWidth: '100%',
+            margin: '0 auto',
+            boxSizing: 'border-box'  // Added to include padding in width calculation
+        }}>
+            <h1 style={{
+                textAlign: 'center',
+                fontSize: 'calc(18px + 2vmin)',
+                marginBottom: '20px',
+                wordWrap: 'break-word'  // Ensures long text wraps
+            }}>Currency Exchange Rate Checker</h1>
+            
+            <div style={{ 
+                display: 'flex', 
+                flexDirection: 'row',
+                justifyContent: 'center', 
+                gap: '10px',  // Reduced gap for mobile
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                width: '100%',
+                padding: '0 5px',  // Reduced padding
+                boxSizing: 'border-box'
+            }}>
+                <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center',
+                    width: '140px',  // Fixed width instead of minWidth
+                    margin: '0 5px'  // Added margin instead of gap
+                }}>
                     <img 
                         src={getFlagImage(baseCurrency)} 
                         alt={`${baseCurrency} flag`}
                         style={{ 
-                            height: '30px', 
+                            height: '25px',  // Slightly smaller flags
                             objectFit: 'contain',
-                            marginBottom: '10px'
+                            marginBottom: '8px'
                         }}
                     />
-                    <select value={baseCurrency} onChange={handleBaseCurrencyChange}>
+                    <select 
+                        value={baseCurrency} 
+                        onChange={handleBaseCurrencyChange}
+                        style={{
+                            width: '100%',
+                            padding: '5px 2px',  // Reduced padding
+                            fontSize: '14px'  // Smaller font size
+                        }}
+                    >
                         {majorCurrencies.map((currency) => (
                             <option key={currency.code} value={currency.code}>
                                 {currency.code} - {currency.name}
@@ -84,26 +119,42 @@ const ExchangeRateChecker = () => {
                 <button 
                     onClick={handleSwapCurrencies}
                     style={{
-                        margin: '0 10px',
-                        padding: '5px 10px',
+                        padding: '6px 8px',  // Smaller button
                         cursor: 'pointer',
-                        alignSelf: 'flex-end'
+                        borderRadius: '4px',
+                        border: '1px solid #ccc',
+                        backgroundColor: '#f8f8f8',
+                        margin: '0 2px'
                     }}
                 >
                     ⇄
                 </button>
 
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center',
+                    width: '140px',  // Fixed width instead of minWidth
+                    margin: '0 5px'  // Added margin instead of gap
+                }}>
                     <img 
                         src={getFlagImage(targetCurrency)} 
                         alt={`${targetCurrency} flag`}
                         style={{ 
-                            height: '30px', 
+                            height: '25px',  // Slightly smaller flags
                             objectFit: 'contain',
-                            marginBottom: '10px'
+                            marginBottom: '8px'
                         }}
                     />
-                    <select value={targetCurrency} onChange={handleTargetCurrencyChange}>
+                    <select 
+                        value={targetCurrency} 
+                        onChange={handleTargetCurrencyChange}
+                        style={{
+                            width: '100%',
+                            padding: '5px 2px',  // Reduced padding
+                            fontSize: '14px'  // Smaller font size
+                        }}
+                    >
                         {majorCurrencies.map((currency) => (
                             <option key={currency.code} value={currency.code}>
                                 {currency.code} - {currency.name}
@@ -118,7 +169,9 @@ const ExchangeRateChecker = () => {
                 flexDirection: 'column', 
                 alignItems: 'center',
                 marginTop: '20px',
-                gap: '10px'
+                padding: '0 5px',
+                width: '100%',
+                boxSizing: 'border-box'
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <input 
